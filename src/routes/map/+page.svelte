@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Scatterplot from "../../components/scatterplot/Scatterplot.svelte";
+  import Map from "../../components/map/Map.svelte";
   import data from "../../data/data.json"
   let year: number = 1800;
   $: years = data.map((row: any) => parseInt(row.year));
@@ -34,7 +34,7 @@
 </script>
 <div class="container">
   <!-- <Scatterplot data={filteredData.countries} {year} /> -->
-  <Scatterplot data={filteredData.countries} {year}/>
+  <Map data={filteredData.countries} {year}/>
 </div>
 <div class="control-panel">
   <button on:click={yearIncrement}>Play</button>
@@ -59,7 +59,8 @@
     justify-content: center;
   }
   .container {
-    background-color: white;
+    background-color:rgb(1, 1, 32);
+    width:100vw;
     display: flex;
     justify-content: center;
   }

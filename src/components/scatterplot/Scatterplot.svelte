@@ -7,17 +7,17 @@
   import AxisY from "./AxisY.svelte";
   import Legend from "./Legend.svelte";
   import * as d3 from "d3";
-  import { onMount } from "svelte";
+
   const width = 900;
-  const height = 700;
+  const height = 670;
   const margin = {
-    top: 50,
+    top: 20,
     bottom: 50,
     left: 40,
     right: 60,
   };
-  const innerHeight = height - margin.top - margin.bottom;
-  const innerWidth = width - margin.left - margin.right;
+  $: innerHeight = height - margin.top - margin.bottom;
+  $: innerWidth = width - margin.left - margin.right;
   const continents = ["americas", "europe", "asia", "africa"];
   const yTicks = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90];
   const xTicks = [140, 400, 4000, 40000, 150000];
@@ -39,10 +39,14 @@
   $: colors = d3.scaleOrdinal(continents).range(d3.schemePastel2);
   $: yScale = d3.scaleLinear().domain([0, 90]).range([innerHeight, 0]);
   const populationDomain = [2000, 1400000000];
-  $: area = d3
-    .scaleLinear()
-    .range([25 * Math.PI, 1500 * Math.PI])
-    .domain(populationDomain);
+  // $: area = d3
+  //   .scaleLinear()
+  //   .range([25 * Math.PI, 1500 * Math.PI])
+  //   .domain(populationDomain);
+
+  $:area= d3.scaleSqrt()
+    .domain(populationDomain) 
+    .range([50, 2500]);
 
   const filterContinent = (continent: string) => {
     continentFilter = continent;

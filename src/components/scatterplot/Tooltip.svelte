@@ -35,6 +35,7 @@
     border-radius: 1rem;
     opacity: 0;
     animation: fadeIn 300ms ease-in forwards;
+    color: #00bcd4;
   }
   @keyframes fadeIn {
     100% {
