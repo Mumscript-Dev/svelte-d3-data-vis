@@ -36,15 +36,16 @@
   let globe: any;
   let countriesGeo: any;
   let isDragging = false;
+
   onMount(async() => {
-    // @ts-ignore
-    // const world = fetch("/src/data/world.topojson").then((world) => {
-    //   // @ts-ignore
-    // countriesGeo = topojson.feature(world, world.objects.countries).features;
-    // }); 
-    const res = await fetch("/src/data/world.topojson")
-    const world = await res.json();
-    countriesGeo = await topojson.feature(world, world.objects.countries).features;
+    d3.json("src/data/world.topojson").then((data) => {
+      // @ts-ignore
+    countriesGeo = topojson.feature(data, data.objects.countries).features;
+    }); 
+    
+    // const res = await fetch("/src/data/world.topojson")
+    // const world = await res.json();
+    // countriesGeo = await topojson.feature(world, world.objects.countries).features;
    const dragSensitivity = 0.15
    const myGlobe = d3.select(globe)
    myGlobe.call(
