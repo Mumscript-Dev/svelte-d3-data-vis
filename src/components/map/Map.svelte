@@ -99,7 +99,7 @@ on:mousemove={handleMouseCoord}>
     <filter id="glow" height="130%">
       <feGaussianBlur in="SourceAlpha" stdDeviation="7.5" />
       <feOffset dx="0" dy="0" result="offsetblur" />
-      <feFlood flood-color="rgba(100, 255, 100, .85)" />
+      <feFlood flood-color="rgba(173, 216, 230, .85)" />
       <feComposite in2="offsetblur" operator="in" />
       <feMerge>
         <feMergeNode />
@@ -108,7 +108,7 @@ on:mousemove={handleMouseCoord}>
     </filter>
   </defs>
   <g transform="translate({margin.left}, {margin.top})">
-    <circle cx={innerWidth/2} cy={innerHeight/2} r={innerWidth/2-150} stroke="grey" fill="lightblue"></circle>
+    <circle filter="url('#glow')" cx={innerWidth/2} cy={innerHeight/2} r={innerWidth/2-150} stroke="grey" fill="lightblue"></circle>
     {#if countriesGeo}
     {#each countriesGeo as country}
       <path
@@ -144,4 +144,7 @@ on:mousemove={handleMouseCoord}>
   .countries:hover {
     opacity: 1
   }
+  svg {
+  overflow: visible;
+}
 </style>
