@@ -43,7 +43,7 @@
     // countriesGeo = topojson.feature(data, data.objects.countries).features;
     // }); 
     
-    const res = await fetch("/src/lib/data/world.topojson")
+    const res = await fetch("/src/lib/data/world.json")
     const world = await res.json();
     countriesGeo = await topojson.feature(world, world.objects.countries).features;
    const dragSensitivity = 0.15
