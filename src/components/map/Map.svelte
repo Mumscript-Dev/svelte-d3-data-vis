@@ -20,13 +20,6 @@
   $: innerHeight = height - margin.top - margin.bottom;
   $: innerWidth = width - margin.left - margin.right;
   const continents = ["americas", "europe", "asia", "africa"];
-  // $: colors = d3.scaleQuantize([2000, 1400000000], ["lightblue", "darkblue", "purple", "red"]);
-  // const projection = d3
-  //   .geoEquirectangular()
-  //   // @ts-ignore
-  //   .translate([width / 2 , height / 2 - 50])
-  //   .scale(120);
-  // $: colors = d3.scaleOrdinal(continents).range(["lightblue", "darkblue", "purple", "red"]);
 
   let rotation: number = 0;
   let degreePerFrame = 0.4;
@@ -43,14 +36,15 @@
   let globe: any;
   let countriesGeo: any;
   let isDragging = false;
-  onMount(() => {
+  onMount(async() => {
     // @ts-ignore
-    const world = d3.json("src/data/world.topojson").then((data) => {
-      console.log(data)
-      // @ts-ignore
-      countriesGeo = topojson.feature(data, data.objects.countries).features;
-    }); 
-
+    // const world = fetch("/src/data/world.topojson").then((world) => {
+    //   // @ts-ignore
+    // countriesGeo = topojson.feature(world, world.objects.countries).features;
+    // }); 
+    const res = await fetch("/src/data/world.topojson")
+    const world = await res.json();
+    countriesGeo = await topojson.feature(world, world.objects.countries).features;
    const dragSensitivity = 0.15
    const myGlobe = d3.select(globe)
    myGlobe.call(
@@ -64,12 +58,7 @@
       })
    )
   });
-  // const getColor =async(country:string) => {
-  //   console.log(country)
-  //   const continent:string= data.filter(row => row.country === country)[0].continent
-  //   const color = await colors(continent)
-  //   return color
-  // }
+
   const getCountryInfo = (country: string|null) => {
     if(!country)
       return null
