@@ -36,9 +36,9 @@
   let globe: any;
   let countriesGeo: any;
   let isDragging = false;
-
+  const dataSrc = "dist/src/lib/data/world.topojson"
   onMount(async() => {
-    d3.json("src/data/world.topojson").then((data) => {
+    d3.json(dataSrc).then((data) => {
       // @ts-ignore
     countriesGeo = topojson.feature(data, data.objects.countries).features;
     }); 

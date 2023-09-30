@@ -1,6 +1,6 @@
 <script lang="ts">
   import Map from "../../components/map/Map.svelte";
-  import data from "../../data/data.json"
+  import data from "$lib/data/data.json"
   let year: number = 1800;
   $: years = data.map((row: any) => parseInt(row.year));
 
