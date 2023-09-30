@@ -46,6 +46,7 @@
   onMount(() => {
     // @ts-ignore
     const world = d3.json("src/data/world.topojson").then((data) => {
+      console.log(data)
       // @ts-ignore
       countriesGeo = topojson.feature(data, data.objects.countries).features;
     }); 
