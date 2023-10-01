@@ -137,7 +137,4 @@ on:mousemove={handleMouseCoord}>
   svg {
   overflow: visible;
 }
-.container {
-  
-}
 </style>
