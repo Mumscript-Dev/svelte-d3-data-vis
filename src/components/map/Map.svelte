@@ -4,6 +4,7 @@
   export let year: number;
   import * as d3 from "d3"
   import {onMount} from "svelte";
+  import world from "$lib/data/world.ts"
    // @ts-ignore
   import * as topojson from "topojson";
   import Tooltip from "./Tooltip.svelte";
@@ -42,9 +43,6 @@
     //   // @ts-ignore
     // countriesGeo = topojson.feature(data, data.objects.countries).features;
     // }); 
-    
-    const res = await fetch("/src/lib/data/world.json")
-    const world = await res.json();
     countriesGeo = await topojson.feature(world, world.objects.countries).features;
    const dragSensitivity = 0.15
    const myGlobe = d3.select(globe)
