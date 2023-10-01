@@ -37,8 +37,8 @@
 <div class="container" bind:clientHeight={height}>
 
 </div>
-<div class="control-panel">
-  <button on:click={yearIncrement}>Play</button>
+<!-- <div class="control-panel">
+  <button on:click={yearIncrement}>Let time fly</button>
   <button on:click={pauseYear}>Pause</button>
   <button on:click={resetYear}>Reset</button>
   <input
@@ -48,7 +48,7 @@
     max={Math.max(...years)}
     bind:value={year}
   />
-</div>
+</div> -->
 
   <style>
   .year-control {
