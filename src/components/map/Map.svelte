@@ -67,7 +67,6 @@
   }
   let hoveredCountry:null|Country = null;
 	$: handleCircleHover = (country: string, data) => {
-    console.log(country)
 		hoveredCountry = getCountryInfo(country, data);
 	}
 
@@ -101,7 +100,6 @@ on:mousemove={handleMouseCoord}>
   <g transform="translate({margin.left}, {margin.top})">
     <circle filter="url('#glow')" cx={innerWidth/2} cy={innerHeight/2} r={globeWidth} stroke="grey" fill="lightblue"></circle>
     {#if countriesGeo}
-    {console.log(countriesGeo.filter(geo=>geo.properties.name.includes("Russia")))}
     {#each countriesGeo as country}
       <path
         d={path(country)}
