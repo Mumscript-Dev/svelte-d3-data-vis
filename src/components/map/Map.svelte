@@ -30,7 +30,7 @@
   })
   $: projection = d3.geoOrthographic()
   .scale(globeWidth)
-  .rotate([0, 0])
+  .rotate([rotation, 0])
   .translate([innerWidth/2, innerHeight/2]);
   $: path = d3.geoPath(projection);
   
