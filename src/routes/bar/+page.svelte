@@ -1,33 +1,70 @@
 <script lang="ts">
-  import type { Country } from "$lib/appConfig/types";
-  export let data: Country [];
-  // export let year: number;
-  import * as d3 from "d3";
-  console.log(data)
-
+  import Scatterplot from "../../components/scatterplot/Scatterplot.svelte";
+  import data from "$lib/data/data.json"
   let width = 900;
-  let height = 700;
-  const margin = {
-    top: 50,
-    bottom: 50,
-    left: 50,
-    right: 50,
+  let height = 670;
+  let year: number = 1800;
+  $: years = data.map((row: any) => parseInt(row.year));
+
+  $: filteredData = data.filter((row:any) => row.year === year.toString())[0];
+
+  let interval: any;
+  let isRunning: boolean = false;
+  const yearIncrement = () => {
+    if (isRunning === false) {
+      isRunning = true;
+      interval = setInterval(() => {
+        if (year < 2014) {
+          year++;
+        } else {
+          year = 1800;
+          clearInterval(interval);
+          isRunning = false;
+        }
+      }, 100);
+    }
   };
-  $: innerHeight = height - margin.top - margin.bottom;
-  $: innerWidth = width - margin.left - margin.right;
-  // const continents = ["americas", "europe", "asia", "africa"];
-  // $: colors = d3.scaleOrdinal().domain(continents).range(d3.schemePastel2);
-  // $: yScale = d3.scaleBand().domain(continents).range([innerHeight, 0]).paddingOuter(0.1)
-
-  // $: xScale = d3.scaleLinear().domain([0,90]).range([0, innerWidth])
-
-  // let simulation = d3.forceSimulation(data)
+  const resetYear = () => {
+    isRunning = false;
+    year = 1800;
+    clearInterval(interval);
+  };
+  const pauseYear = () => {
+    isRunning = false;
+    clearInterval(interval);
+  };
 </script>
+<div class="container" bind:clientHeight={height}>
 
-<div class="container" bind:clientWidth={width} bind:clientHeight={height}>
-  <svg {width} {height}>
-    <g transform="translate({margin.left}, {margin.top})">
-     
-    </g>
-  </svg>
 </div>
+<div class="control-panel">
+  <button on:click={yearIncrement}>Play</button>
+  <button on:click={pauseYear}>Pause</button>
+  <button on:click={resetYear}>Reset</button>
+  <input
+    class="year-control"
+    type="range"
+    min={Math.min(...years)}
+    max={Math.max(...years)}
+    bind:value={year}
+  />
+</div>
+
+  <style>
+  .year-control {
+    width: 800px;
+  }
+  .control-panel {
+    padding-top:0.5rem;
+    display: flex;
+    justify-content: center;
+  }
+  .container {
+    height:88vh;
+    width: 100vw;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+  }
+
+  </style>

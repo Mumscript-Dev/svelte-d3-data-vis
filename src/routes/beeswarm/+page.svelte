@@ -54,10 +54,14 @@
     width: 800px;
   }
   .control-panel {
+    padding-top:0.5rem;
     display: flex;
     justify-content: center;
   }
   .container {
+    height:88vh;
+    width: 100vw;
+    background-color: white;
     display: flex;
     justify-content: center;
   }
