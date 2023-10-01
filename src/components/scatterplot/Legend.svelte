@@ -42,9 +42,9 @@
   <g on:click={resetContinentFilter} tabindex="0" role="button">
     {#each continents as continent, index}
       <circle
-        cx={index * 12 + 10}
+        cx={index * 16 + 15 }
         cy={340}
-        r={6}
+        r={8}
         fill={colors(continent)}
         dx={10}
       />
