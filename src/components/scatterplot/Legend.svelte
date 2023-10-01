@@ -65,7 +65,7 @@
     >{populationDomain[0]}</text
   >
   <circle
-    cx={margin.right - Math.sqrt(area(populationDomain[1]) / Math.PI)}
+    cx={margin.right/2}
     cy={470}
     r={Math.sqrt(area(populationDomain[1]) / Math.PI)}
     fill="none"
