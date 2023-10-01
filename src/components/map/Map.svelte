@@ -2,6 +2,8 @@
   import type { Country } from "$lib/appConfig/types";
   export let data: Country[];
   export let year: number;
+  export let width:number;
+  export let height: number;
   import * as d3 from "d3"
   import {onMount} from "svelte";
   import world from "$lib/data/world.ts"
@@ -10,18 +12,16 @@
   import Tooltip from "./Tooltip.svelte";
   import Legend from "./Legend.svelte";
 
-  const width = 900;
-  const height = 670;
   const margin = {
-    top: 20,
+    top: 50,
     bottom: 50,
-    left: 40,
-    right: 60,
+    left: 80,
+    right: 100
   };
   $: innerHeight = height - margin.top - margin.bottom;
   $: innerWidth = width - margin.left - margin.right;
   const continents = ["americas", "europe", "asia", "africa"];
-
+  $: globeWidth = innerWidth/2-50
   let rotation: number = 0;
   let degreePerFrame = 0.4;
   const t = d3.timer((elapsed) => {
@@ -29,14 +29,15 @@
     rotation += degreePerFrame
   })
   $: projection = d3.geoOrthographic()
-  .scale(innerWidth/2-150)
-  .rotate([rotation, 0])
+  .scale(globeWidth)
+  .rotate([0, 0])
   .translate([innerWidth/2, innerHeight/2]);
   $: path = d3.geoPath(projection);
   
   let globe: any;
   let countriesGeo: any;
   let isDragging = false;
+
   // const dataSrc = "dist/src/lib/data/world.topojson"
   onMount(async() => {
     // d3.json(dataSrc).then((data) => {
@@ -58,15 +59,16 @@
    )
   });
 
-  const getCountryInfo = (country: string|null) => {
+  $: getCountryInfo = (country: string|null, data:Country[]) => {
     if(!country)
       return null
     
     return data.filter(row => row.country === country)[0]
   }
   let hoveredCountry:null|Country = null;
-	const handleCircleHover = (country: string) => {
-		hoveredCountry = getCountryInfo(country);
+	$: handleCircleHover = (country: string, data) => {
+    console.log(country)
+		hoveredCountry = getCountryInfo(country, data);
 	}
 
 	const handleLeaveChart = () => {
@@ -81,7 +83,7 @@
   
 </script>
 
-<div class="container" role="tooltip"
+<div class="container" role="tooltip"  bind:clientHeight={height} bind:clientWidth={width} 
 on:mousemove={handleMouseCoord}>
 <svg {width} {height} bind:this={globe}>
   <defs>
@@ -97,16 +99,17 @@ on:mousemove={handleMouseCoord}>
     </filter>
   </defs>
   <g transform="translate({margin.left}, {margin.top})">
-    <circle filter="url('#glow')" cx={innerWidth/2} cy={innerHeight/2} r={innerWidth/2-150} stroke="grey" fill="lightblue"></circle>
+    <circle filter="url('#glow')" cx={innerWidth/2} cy={innerHeight/2} r={globeWidth} stroke="grey" fill="lightblue"></circle>
     {#if countriesGeo}
+    {console.log(countriesGeo.filter(geo=>geo.properties.name.includes("Russia")))}
     {#each countriesGeo as country}
       <path
         d={path(country)}
         class="countries"
         stroke="#787878"
         fill={country.properties.color}
-        on:mouseover={() => handleCircleHover(country.properties.name)}
-        on:focus={() => handleCircleHover(country.properties.name)}
+        on:mouseover={() => handleCircleHover(country.properties.name, data)}
+        on:focus={() => handleCircleHover(country.properties.name, data)}
         on:mouseleave={() => handleLeaveChart()}  
         role="tooltip"
         opacity={0.5}
@@ -135,5 +138,8 @@ on:mousemove={handleMouseCoord}>
   }
   svg {
   overflow: visible;
+}
+.container {
+  
 }
 </style>

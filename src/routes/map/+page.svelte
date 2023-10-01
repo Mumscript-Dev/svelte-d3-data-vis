@@ -1,7 +1,8 @@
 <script lang="ts">
   import Map from "../../components/map/Map.svelte";
   import data from "$lib/data/data.json"
-
+  let width = 900;
+  let height = 670;
   let year: number = 1800;
   $: years = data.map((row: any) => parseInt(row.year));
 
@@ -33,9 +34,9 @@
     clearInterval(interval);
   };
 </script>
-<div class="container">
+<div class="container" bind:clientHeight={height} >
   <!-- <Scatterplot data={filteredData.countries} {year} /> -->
-  <Map data={filteredData.countries} {year}/>
+  <Map data={filteredData.countries} {year} {width} {height}/>
 </div>
 <div class="control-panel">
   <button on:click={yearIncrement}>Play</button>
@@ -61,7 +62,8 @@
   }
   .container {
     background-color:rgb(1, 1, 32);
-    width:100vw;
+    height:88vh;
+    width: 100vw;
     display: flex;
     justify-content: center;
   }

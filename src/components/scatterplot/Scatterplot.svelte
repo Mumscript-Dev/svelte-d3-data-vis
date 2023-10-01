@@ -2,19 +2,19 @@
   import type { Country } from "$lib/appConfig/types";
   export let data: Country[];
   export let year: number;
+  export let width: number;
+  export let height:number; 
   import Tooltip from "./Tooltip.svelte";
   import AxisX from "./AxisX.svelte";
   import AxisY from "./AxisY.svelte";
   import Legend from "./Legend.svelte";
   import * as d3 from "d3";
-
-  const width = 900;
-  const height = 670;
+  
   const margin = {
-    top: 20,
-    bottom: 50,
-    left: 40,
-    right: 60,
+    top: 50,
+    bottom: 80,
+    left: 50,
+    right: 80,
   };
   $: innerHeight = height - margin.top - margin.bottom;
   $: innerWidth = width - margin.left - margin.right;
@@ -68,7 +68,7 @@
   };
 </script>
 
-<div role="tooltip" class="container" on:mousemove={handleMouseCoord}>
+<div role="tooltip" class="container" bind:clientHeight={height} bind:clientWidth={width} on:mousemove={handleMouseCoord}>
   <svg {width} {height}>
     <g transform="translate({margin.left}, {margin.top})">
       {#if chartData}
@@ -100,7 +100,7 @@
     >
     <text
       class="xMeasure"
-      y={innerHeight + margin.top + 40}
+      y={innerHeight + margin.top + 50}
       x={innerWidth / 2 + margin.left}
       text-anchor="middle">GDP Per Capita ($)</text
     >
@@ -133,5 +133,8 @@
     font-size: 20px;
     writing-mode: vertical-rl;
     text-orientation: mixed;
+  }
+  .container {
+    width:80%
   }
 </style>
