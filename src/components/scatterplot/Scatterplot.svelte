@@ -70,7 +70,9 @@
 
 <div role="tooltip" class="container" bind:clientHeight={height} bind:clientWidth={width} on:mousemove={handleMouseCoord}>
   <svg {width} {height}>
+
     <g transform="translate({margin.left}, {margin.top})">
+      <text x={innerWidth/2} y={innerHeight*2/3} text-anchor="middle" class="year" stroke="lightgray" style="font-size: {innerWidth/3};" >{year}</text>
       {#if chartData}
         {#each chartData as row, index}
           {#if row["life_exp"] && row.income}
@@ -136,5 +138,11 @@
   }
   .container {
     width:80%
+  }
+
+  .year {
+    font-size: var(--font-size);
+    stroke: lightgray;
+    fill:lightgray
   }
 </style>

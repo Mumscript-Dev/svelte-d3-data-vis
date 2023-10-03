@@ -15,26 +15,20 @@
 </script>
 
 <g>
-  <text class="label" x={margin.right / 2} y={20} text-anchor="middle"
-    >Year</text
-  >
-  <text class="value" x={margin.right / 2} y={50} text-anchor="middle"
-    >{year}</text
-  >
-  <text class="label" x={margin.right} y={80} text-anchor="end">Continents</text
+  <text class="label" x={margin.right} y={20} text-anchor="end">Continents</text
   >
   {#each continents as continent, index}
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <circle
       cx={margin.right / 2}
-      cy={110 + 60 * index}
+      cy={50 + 60 * index}
       r={15}
       fill={colors(continent)}
       on:click={() => filterContinent(continent)}
       tabindex="0"
       role="button"
     />
-    <text x={margin.right / 2} y={110 + 60 * index + 25} text-anchor="middle"
+    <text x={margin.right / 2} y={50 + 60 * index + 25} text-anchor="middle"
       >{continent}</text
     >
   {/each}
@@ -43,7 +37,7 @@
     {#each continents as continent, index}
       <circle
         cx={index * 16 + 15 }
-        cy={340}
+        cy={280}
         r={8}
         fill={colors(continent)}
         dx={10}
@@ -51,27 +45,27 @@
     {/each}
   </g>
   <!-- <circle cx={margin.right / 2} cy={}>Reset</circle> -->
-  <text class="label" x={margin.right} y={380} text-anchor="end"
+  <text class="label" x={margin.right} y={320} text-anchor="end"
     >Population</text
   >
   <circle
     cx={margin.right / 2}
-    cy={400}
+    cy={350}
     r={Math.sqrt(area(populationDomain[0]) / Math.PI)}
     fill="none"
     stroke="grey"
   />
-  <text x={margin.right / 2} y={420} text-anchor="middle"
+  <text x={margin.right / 2} y={380} text-anchor="middle"
     >{populationDomain[0]}</text
   >
   <circle
     cx={margin.right/2}
-    cy={470}
+    cy={420}
     r={Math.sqrt(area(populationDomain[1]) / Math.PI)}
     fill="none"
     stroke="grey"
   />
-  <text x={margin.right} y={530} text-anchor="end">{populationDomain[1]}</text>
+  <text x={margin.right} y={470} text-anchor="end">{populationDomain[1]}</text>
 </g>
 
 <style>

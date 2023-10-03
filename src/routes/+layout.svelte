@@ -3,6 +3,7 @@
   <header>
     <nav>
         <ul>
+          <li><a href="/">Dashboard</a></li>
             <li><a href="/scatterplot">ScatterPlot</a></li>
             <li><a href="/map">Map</a></li>
             <li><a href="/beeswarm">BeeSwarm</a></li>

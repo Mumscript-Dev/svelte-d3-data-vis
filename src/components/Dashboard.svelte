@@ -5,7 +5,6 @@
   export let width:number;
   export let height: number;
   export let year:number;
-  console.log(data)
 
   $: totalPopulation = data.reduce((total:number, current:Country) => Number(total + current.population), 0 )
 
