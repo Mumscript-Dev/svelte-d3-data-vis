@@ -24,7 +24,7 @@
   <header>
     <h1>Dashboard</h1>
     <div>
-      In year <span class="variable">{year}</span>, we have <span class="variable">{totalPopulation.toFixed(0)}</span> people in <span class="variable">the World</span>, GDP per  capita is $<span class="variable">{averageGDP.toFixed(2)}</span>, and life expectation is around <span class="variable">{averageLifeExp.toFixed(0)}</span> years old.
+      In year <span class="variable">{year}</span>, we have <span class="variable">{totalPopulation.toFixed(0)}</span> people in <span class="variable">the World</span>, GDP per  capita is $<span class="variable">{averageGDP.toFixed(2)}</span>, and life expectancy is around <span class="variable">{averageLifeExp.toFixed(0)}</span> years.
     </div>  
   </header>
   

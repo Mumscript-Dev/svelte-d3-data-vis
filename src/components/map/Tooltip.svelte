@@ -8,7 +8,7 @@
 <div class="tooltip" style="position: absolute; top: {yPosition}px; left: {xPosition}px;">
   <h5>{country.country}</h5>
   <p>Continent: {country.continent}</p>
-  <p>Life Expectation: {country?.life_exp} years</p>
+  <p>Life Expectatancy: {country?.life_exp} years</p>
   <p>GDP Per Capita: ${country?.income}</p>
 
 </div>

@@ -96,7 +96,7 @@
       class="yMeasure"
       x={10}
       y={innerHeight / 2 + margin.top}
-      text-anchor="middle">Life Expectation (Years)</text
+      text-anchor="middle">Life Expectatancy (Years)</text
     >
     <text
       class="xMeasure"

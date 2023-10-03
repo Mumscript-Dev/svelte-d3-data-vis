@@ -10,7 +10,7 @@
   style="position: absolute; top: {yPosition}px; left: {xPosition}px;"
 >
   <h5>Country: {data.country}</h5>
-  <p>Life Expectation: {data["life_exp"]}</p>
+  <p>Life Expectatancy: {data["life_exp"]}</p>
   <p>Income: {data.income}</p>
   <p>Population: {data.population}</p>
 </div>
