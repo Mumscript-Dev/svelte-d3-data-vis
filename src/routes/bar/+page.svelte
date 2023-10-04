@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Scatterplot from "../../components/scatterplot/Scatterplot.svelte";
+  import Bar from "../../components/Barchart/Bar.svelte"
   import data from "$lib/data/data.json"
   let width = 900;
   let height = 670;
@@ -35,9 +35,9 @@
   };
 </script>
 <div class="container" bind:clientHeight={height}>
-
+  <Bar data={filteredData.countries} {year} {width} {height} />
 </div>
-<!-- <div class="control-panel">
+<div class="control-panel">
   <button on:click={yearIncrement}>Let time fly</button>
   <button on:click={pauseYear}>Pause</button>
   <button on:click={resetYear}>Reset</button>
@@ -48,7 +48,7 @@
     max={Math.max(...years)}
     bind:value={year}
   />
-</div> -->
+</div>
 
   <style>
   .year-control {
@@ -62,7 +62,7 @@
   .container {
     height:88vh;
     width: 100vw;
-    background-color: white;
+    background-color:rgb(1, 1, 32);
     display: flex;
     justify-content: center;
   }
