@@ -2,7 +2,8 @@
   import type { Country } from "$lib/appConfig/types";
   import getDisplayValue from "$lib/getDisplayValue";
   import * as d3 from "d3";
-
+  import { flip } from 'svelte/animate';
+	import { quintOut } from 'svelte/easing';
   export let year: number; 
   export let data: Country[];
   export let width: number; 
@@ -66,16 +67,15 @@
   </header>
   <svg {width} height={height-50}>
     <g transform="translate({margin.left}, {margin.top})" >
-      {#each filteredData as row}
-      <g in:barEnter out:barExit>
+      {#each filteredData as row,i (row)}
+      <g 
+      in:barEnter out:barExit 
+      animate:flip={{ delay: 250, duration: 250, easing: quintOut }}
+      >
         <rect x={0} y={yScale(row.country)} height={yScale.bandwidth()} width={xScale(row.population)} fill={colors(row.continent)} />
-        <!-- {#if xScale(row.population) < innerWidth/2} -->
-          <text x={xScale(row.population)} dx={5} y={yScale(row.country) +( yScale.bandwidth()/2+5)} text-anchor="start" stroke="white">{row.country}: {getDisplayValue(row.population)}</text>
-        <!-- {:else}
-           <text x={xScale(row.population)/2}  y={yScale(row.country) +( yScale.bandwidth()/2+5)} text-anchor="middle" stroke="white">{row.country}: {getDisplayValue(row.population)}</text>
-        {/if} -->
+        <text x={xScale(row.population)} dx={5} y={yScale(row.country) +( yScale.bandwidth()/2+5)} text-anchor="start" stroke="white">{row.country}: {getDisplayValue(row.population)}</text>
       </g>
-      {/each}
+      {/each}``
     </g>
   </svg>
 </div>
