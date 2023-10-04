@@ -10,6 +10,7 @@
 
   let interval: any;
   let isRunning: boolean = false;
+  
   const yearIncrement = () => {
     if (isRunning === false) {
       isRunning = true;

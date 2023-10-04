@@ -9,9 +9,9 @@ const getDisplayValue = ( value: number ) => {
 	const digits = getNumberOfDigits( trimedValue );
 	if ( digits < 4 ) return `${ trimedValue }`;
 
-	if ( digits < 7 ) return `${ ( value / 1000 ).toFixed( 0 ) }k`;
+	if ( digits < 7 ) return `${ ( value / 1000 ).toFixed( 2 ) }k`;
 
-	if ( digits < 10	 ) return `${ ( value / 1000000 ).toFixed( 1 ) }m`;
+	if ( digits < 10	 ) return `${ ( value / 1000000 ).toFixed( 2 ) }m`;
 
 	return `${ ( trimedValue / 1000000000 ).toFixed( 2 ) }b`;
 };
