@@ -37,28 +37,6 @@
   $: yDomain = filteredData.map(row => row.country) 
   $: yScale = d3.scaleBand().domain(yDomain).range([0, innerHeight]).paddingInner(0.1).paddingOuter(0.2)
   $: xScale = d3.scaleLinear().domain([2000, 1400000000]).range([0, innerWidth])
-  const duration = 150;
-  const barExit = (_node: Element) => {
-    return {
-      duration: duration * 2,
-      css: (t: number) => {
-        return `                                         
-          opacity: ${t};
-        `;
-      },
-    };
-  }
-
-  const barEnter = (_node: Element) => {
-    return {
-      duration: duration * 2,
-      css: (t: number) => {
-        return `
-          opacity: ${t};                                     
-        `;
-      },
-    };
-  }
 </script>
 
 <div class="container" bind:clientWidth={width}>
@@ -69,13 +47,12 @@
     <g transform="translate({margin.left}, {margin.top})" >
       {#each filteredData as row,i (row)}
       <g 
-      in:barEnter out:barExit 
       animate:flip={{ delay: 250, duration: 250, easing: quintOut }}
       >
         <rect x={0} y={yScale(row.country)} height={yScale.bandwidth()} width={xScale(row.population)} fill={colors(row.continent)} />
-        <text x={xScale(row.population)} dx={5} y={yScale(row.country) +( yScale.bandwidth()/2+5)} text-anchor="start" stroke="white">{row.country}: {getDisplayValue(row.population)}</text>
+        <text x={xScale(row.population)} dx={5} y={yScale(row.country) +( yScale.bandwidth()/2+5)} text-anchor="start" stroke="white" fill="white">{row.country}: {getDisplayValue(row.population)}</text>
       </g>
-      {/each}``
+      {/each}
     </g>
   </svg>
 </div>

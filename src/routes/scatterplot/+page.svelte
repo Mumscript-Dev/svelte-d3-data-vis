@@ -21,7 +21,7 @@
           clearInterval(interval);
           isRunning = false;
         }
-      }, 100);
+      }, 200);
     }
   };
   const resetYear = () => {
