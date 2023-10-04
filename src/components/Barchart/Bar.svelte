@@ -43,7 +43,7 @@
     return d3
     .scaleLog()
     .base(10)
-    .domain([140, 150000])
+    .domain([1400, 150000])
     .range([0, innerWidth]);
   }
 </script>
