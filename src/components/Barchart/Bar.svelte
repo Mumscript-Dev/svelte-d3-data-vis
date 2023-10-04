@@ -34,8 +34,8 @@
  
   $: yDomain = filteredData.map(row => row.country) 
   $: yScale = d3.scaleBand().domain(yDomain).range([0, innerHeight]).paddingInner(0.1).paddingOuter(0.2)
-  $: xScale = getXScale(filter, data)
-  const getXScale = (filter:string, data: Country[]) => {
+  $: xScale = getXScale(filter)
+  const getXScale = (filter:string) => {
     if (filter === "Population") 
       return d3.scaleLinear().domain([2000, 1400000000]).range([0, innerWidth])
     if (filter ==="Life expectancy")
