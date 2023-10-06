@@ -15,6 +15,7 @@
     left: 20,
     right: 180,
   };
+ 
   $: innerHeight = height - margin.top - margin.bottom - 100;
   $: innerWidth = width - margin.left - margin.right;
   let filter: string = "Population"
@@ -31,6 +32,9 @@
     return data.filter(row => row.income !== null).sort((a, b) => b.income - a.income).slice(0, 20)
   }
 
+  $: countryCount = (continent: string, filteredData: Country[]) => {
+    return filteredData.filter((row:Country) => row.continent ===continent).length
+  }
  
   $: yDomain = filteredData.map(row => row.country) 
   $: yScale = d3.scaleBand().domain(yDomain).range([0, innerHeight]).paddingInner(0.1).paddingOuter(0.2)
@@ -90,5 +94,14 @@
 
   .container {
     width:80%
+  }
+  .country {
+
+  }
+  .continent {
+    display: inline-block;
+    padding: 1rem, 2rem; 
+    margin-inline: 0.5rem;
+    background-color: blue;
   }
 </style>
