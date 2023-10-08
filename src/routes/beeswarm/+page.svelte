@@ -40,6 +40,7 @@
   <!-- <button on:click={yearIncrement}>Let time fly</button>
   <button on:click={pauseYear}>Pause</button>
   <button on:click={resetYear}>Reset</button> -->
+  <label>Time Slider</label>
   <input
     class="year-control"
     type="range"
@@ -65,5 +66,8 @@
     display: flex;
     justify-content: center;
   }
-
+  label {
+    color: whitesmoke;
+    padding-right:0.5rem;
+  }
   </style>
