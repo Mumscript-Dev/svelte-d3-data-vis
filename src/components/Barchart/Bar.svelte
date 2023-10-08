@@ -19,7 +19,7 @@
   $: innerHeight = height - margin.top - margin.bottom - 100;
   $: innerWidth = width - margin.left - margin.right;
   let filter: string = "Population"
-  $: console.log(filter)
+
   const filterOptions = ["Population", "Life expectancy", "GDP Per Capita"]
   $: filteredData = getFilteredData(filter, data)
   $: colors = d3.scaleOrdinal(continents).range(d3.schemePastel2);
