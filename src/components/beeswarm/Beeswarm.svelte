@@ -10,7 +10,7 @@
   let width = 900;
   let height = 600;
   const margin = {
-    top: 50,
+    top: 30,
     bottom: 50,
     left: 70,
     right: 30,
@@ -29,18 +29,6 @@
     const xTicks = [140, 400, 4000, 40000, 150000];
   const RADIUS =10
   $: simulation = d3.forceSimulation(data)
-          // .force("x", d3.forceX() 
-          //     .x(d => xScale(d.income))
-          //     .strength(0.5)
-          // )
-          // .force("y", d3.forceY()
-          //     .y(d => yScale(d.continent))
-          //     .strength(0.2)
-          // )
-          // .force("collide", d3.forceCollide().radius(RADIUS))
-          //     .alpha(1) // [0, 1] The rate at which the simulation finishes. You should increase this if you want a faster simulation, or decrease it if you want more "movement" in the simulation.
-          //     .alphaDecay(0.0005) // [0, 1] The rate at which the simulation alpha approaches 0. you should decrease this if your bubbles are not completing their transitions between simulation states.
-          //     .restart(); // Restart the simulation
 
   let nodes = []; // Create an empty array to be populated when simulation ticks
   $: simulation.on("tick", () => {
@@ -97,6 +85,18 @@ let hoveredData: Country | null;
       <AxisX {xScale} {innerWidth} {innerHeight} {xTicks} />
       <AxisY {yScale} {innerHeight} {continents} />
     </g>
+    <text
+    class="yMeasure"
+    x={10}
+    y={innerHeight / 2 + margin.top}
+    text-anchor="middle">Continents</text
+  >
+  <text
+    class="xMeasure"
+    y={innerHeight + margin.top + 40}
+    x={innerWidth / 2 + margin.left}
+    text-anchor="middle">GDP Per Capita ($)</text
+  >
   </svg>
 </div>
 
@@ -115,5 +115,10 @@ let hoveredData: Country | null;
     font-size: var(--font-size);
     stroke: lightgray;
     fill:lightgray
+  }
+  .yMeasure {
+    font-size: 20px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
   }
 </style>
