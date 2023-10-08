@@ -1,7 +1,7 @@
 # Data Visualisation 
 This is a website to demonstrate the power of data visualisation
 
-## :computer: [Click here](https://svelte-data-vis.netlify.app/map) to see my live project!
+## :computer: [Click here](https://svelte-data-vis.netlify.app/) to see my live project!
 
 
 ## :page_facing_up: About
