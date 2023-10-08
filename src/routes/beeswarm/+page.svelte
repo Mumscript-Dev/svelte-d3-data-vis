@@ -20,7 +20,7 @@
           clearInterval(interval);
           isRunning = false;
         }
-      }, 100);
+      }, 500);
     }
   };
   const resetYear = () => {
@@ -36,10 +36,10 @@
 <div class="container">
   <Beeswarm data={filteredData.countries} {year}/>
 </div>
-<!-- <div class="control-panel">
-  <button on:click={yearIncrement}>Let time fly</button>
+<div class="control-panel">
+  <!-- <button on:click={yearIncrement}>Let time fly</button>
   <button on:click={pauseYear}>Pause</button>
-  <button on:click={resetYear}>Reset</button>
+  <button on:click={resetYear}>Reset</button> -->
   <input
     class="year-control"
     type="range"
@@ -47,7 +47,7 @@
     max={Math.max(...years)}
     bind:value={year}
   />
-</div> -->
+</div>
 
   <style>
   .year-control {
