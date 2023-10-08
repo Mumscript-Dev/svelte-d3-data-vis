@@ -3,6 +3,8 @@
   import Beeswarm from "../../components/beeswarm/Beeswarm.svelte"
   import data from "$lib/data/data.json"
   let year: number = 1800;
+  let width = 900;
+  let height = 670;
   $: years = data.map((row: any) => parseInt(row.year));
 
   $: filteredData = data.filter((row:any) => row.year === year.toString())[0];
@@ -33,8 +35,8 @@
     clearInterval(interval);
   };
 </script>
-<div class="container">
-  <Beeswarm data={filteredData.countries} {year}/>
+<div class="container" bind:clientHeight={height}>
+  <Beeswarm data={filteredData.countries} {year} {width} {height}/>
 </div>
 <div class="control-panel">
   <!-- <button on:click={yearIncrement}>Let time fly</button>

@@ -6,9 +6,9 @@
   import Tooltip from "./Tooltip.svelte";
   import AxisX from "./AxisX.svelte";
   import AxisY from "./AxisY.svelte";
+  export let width: number;
+  export let height:number; 
 
-  let width = 900;
-  let height = 600;
   const margin = {
     top: 30,
     bottom: 50,
@@ -115,6 +115,9 @@ let hoveredData: Country | null;
     font-size: var(--font-size);
     stroke: lightgray;
     fill:lightgray
+  }
+  .container {
+    width:80%
   }
   .yMeasure {
     font-size: 20px;
