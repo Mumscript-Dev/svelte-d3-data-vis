@@ -72,7 +72,6 @@ let hoveredData: Country | null;
     <g class="inner-chart" transform="translate({margin.left}, {margin.top})">  
       <text x={innerWidth/2} y={innerHeight*2/3} text-anchor="middle" class="year" stroke="lightgray" style="font-size: {innerWidth/3};" >{year}</text>  
       {#each nodes as node}
-        {console.log(node)}
         {#if node.income !== null }
         <circle cx={node.x} cy={node.y} r={RADIUS} fill={colors(node.continent)}
         on:mouseover={() => handleChartHover(node)}
