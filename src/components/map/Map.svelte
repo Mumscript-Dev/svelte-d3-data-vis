@@ -20,8 +20,9 @@
   };
   $: innerHeight = height - margin.top - margin.bottom;
   $: innerWidth = width - margin.left - margin.right;
+  $: console.log(innerWidth, innerHeight)
   const continents = ["americas", "europe", "asia", "africa"];
-  $: globeWidth = innerWidth/2-50
+  $: globeWidth = innerWidth > innerHeight ? innerHeight/2 : innerWidth/2;
   let rotation: number = 0;
   let degreePerFrame = 0.4;
   const t = d3.timer((elapsed) => {
@@ -136,5 +137,8 @@ on:mousemove={handleMouseCoord}>
   }
   svg {
   overflow: visible;
+}
+.container {
+  width: 80%
 }
 </style>

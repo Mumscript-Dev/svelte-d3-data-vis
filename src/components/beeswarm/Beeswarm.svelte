@@ -9,6 +9,10 @@
   export let width: number;
   export let height:number; 
 
+  let filter: string = "Life expectancy"
+
+  const filterOptions = ["Population", "Life expectancy", "GDP Per Capita"]
+
   const margin = {
     top: 30,
     bottom: 50,
@@ -68,7 +72,16 @@ let hoveredData: Country | null;
 </script> 
 
 <div role="tooltip" class="container" bind:clientHeight={height} bind:clientWidth={width} on:mousemove={handleMouseCoord}>
-  <svg {width} {height}>
+  <!-- <header>
+    <div class="filter">
+      <select bind:value={filter} id="cars">
+        {#each filterOptions as option}
+          <option value={option}>{option}</option>
+        {/each}
+      </select>
+    </div>
+  </header> -->
+  <svg {width} height={height}>
     <g class="inner-chart" transform="translate({margin.left}, {margin.top})">  
       <text x={innerWidth/2} y={innerHeight*2/3} text-anchor="middle" class="year" stroke="lightgray" style="font-size: {innerWidth/3};" >{year}</text>  
       {#each nodes as node}
@@ -122,5 +135,10 @@ let hoveredData: Country | null;
     font-size: 20px;
     writing-mode: vertical-rl;
     text-orientation: mixed;
+  }
+  header {
+    padding-top:0.5rem;
+    text-align: center;
+    color:#00bcd4;
   }
 </style>

@@ -5,7 +5,7 @@
   let height = 670;
   let year: number = 1800;
   $: years = data.map((row: any) => parseInt(row.year));
-
+  
   $: filteredData = data.filter((row:any) => row.year === year.toString())[0];
 
   let interval: any;

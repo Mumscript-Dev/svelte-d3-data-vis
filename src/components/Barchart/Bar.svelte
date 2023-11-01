@@ -95,9 +95,6 @@
   .container {
     width:80%
   }
-  .country {
-
-  }
   .continent {
     display: inline-block;
     padding: 1rem, 2rem; 
